@@ -146,6 +146,15 @@ gulp.task('build:html', ['build:json'], function () {
 });
 
 /**
+ * Build Electron task.
+ * This task is responsible for copying the Electron application related files to the 'dist' folder.
+ */
+gulp.task('build:electron', function() {
+    return gulp.src(SRC_FOLDER + '/electron.js')
+        .pipe(gulp.dest(DIST_FOLDER));
+});
+
+/**
  * Build clean task.
  * This task is responsible for removing the unneeded files for the build from the 'dist' folder.
  */
@@ -159,7 +168,7 @@ gulp.task('build:clean', function () {
  * Build main task.
  * This task is responsible for gathering all the subtasks involved in the building process and launch them in parallel.
  */
-gulp.task('build', ['ts:lint', 'browserify', 'copy:images', 'build:scss', 'build:html'], function() {
+gulp.task('build', ['ts:lint', 'browserify', 'copy:images', 'build:scss', 'build:html', 'build:electron'], function() {
     gulp.start('build:clean');
 });
 
@@ -209,7 +218,7 @@ gulp.task('serve', function () {
  * in a distributable format. This task also starts the application server in development mode.
  */
 gulp.task('default', ['clean'], function () {
-    gulp.task('serve:after:build', ['ts:lint', 'browserify', 'copy:images', 'build:scss', 'build:html'], function () {
+    gulp.task('serve:after:build', ['ts:lint', 'browserify', 'copy:images', 'build:scss', 'build:html', 'build:electron'], function () {
         gulp.start('build:clean');
         gulp.start('serve');
     });

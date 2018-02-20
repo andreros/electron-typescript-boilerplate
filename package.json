@@ -1,17 +1,24 @@
 {
-    "name": "typescript-boilerplate",
-    "version": "1.0.0",
-    "description": "Boilerplate for a Typescript project with SASS for CSS and Handlebars for HTML templating.",
-    "main": "index.html",
+    "name": "electron-typescript-boilerplate",
+    "version": "0.0.1",
+    "description": "Boilerplate for building an Electron application written in Typescript, with SASS for CSS and Handlebars for HTML templating.",
+    "main": "dist/electron.js",
     "scripts": {
         "start": "gulp",
         "dev": "gulp default",
-        "serve": "gulp serve"
+        "serve": "gulp serve",
+        "electron": "electron .",
+        "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
+        "package-win": "electron-packager . electron-typescript-boilerplate --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"electron-typescript-boilerplate\"",
+        "package-linux": "electron-packager . electron-typescript-boilerplate --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/icon.png --prune=true --out=release-builds"
     },
-    "dependencies": {},
+    "dependencies": {
+        "electron": "^1.8.2"
+    },
     "devDependencies": {
         "browser-sync": "^2.23.6",
         "browserify": "^16.1.0",
+        "electron-packager": "^11.0.1",
         "gulp": "^3.9.1",
         "gulp-autoprefixer": "^4.1.0",
         "gulp-concat": "^2.6.1",
@@ -32,10 +39,15 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/andreros/typescript-boilerplate"
+        "url": "https://github.com/andreros/electron-typescript-boilerplate"
     },
+    "bugs": {
+        "url": "https://github.com/andreros/electron-typescript-boilerplate/issues"
+    },
+    "homepage": "https://github.com/andreros/electron-typescript-boilerplate#readme",
     "keywords": [
         "boilerplate",
+        "electron",
         "typescript",
         "SASS",
         "handlebars"
