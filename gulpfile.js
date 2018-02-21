@@ -81,13 +81,19 @@ gulp.task('browserify', ['ts:compile'], function () {
     // Single entry point to browserify
     var b = browserify({
         entries: DIST_FOLDER + '/index.js',
+        //builtins: [{fs: fs}],
+        //commonDir: false, 
+        //detectGlobals: false,
+        //ignoreMissing: true,
+        //insertGlobalVars: 'global',
+        //browserField: false,
         debug: false
     });
     return b.bundle()
         .pipe(vinylSourceStream('bundle.js'))
         .pipe(vinylBuffer())
         .pipe(sourcemaps.init({ loadMaps: true }))
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(DIST_FOLDER));
 });

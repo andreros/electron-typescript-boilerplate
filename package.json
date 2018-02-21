@@ -2,7 +2,7 @@
     "name": "electron-typescript-boilerplate",
     "version": "0.0.1",
     "description": "Boilerplate for building an Electron application written in Typescript, with SASS for CSS and Handlebars for HTML templating.",
-    "main": "dist/electron.js",
+    "main": "dist/bundle.js",
     "scripts": {
         "start": "gulp",
         "dev": "gulp default",

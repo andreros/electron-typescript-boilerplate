@@ -1,6 +1,3 @@
-// Application entry point
-import { Header } from "./components/index";
+import { ElectronApp } from "./components";
 
-let header = new Header("Earthling");
-
-console.log("header: ", header);
+const electronApp = new ElectronApp();
