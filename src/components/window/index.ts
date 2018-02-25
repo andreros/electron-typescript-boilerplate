@@ -2,17 +2,21 @@ import { BrowserWindow } from "electron";
 
 export class Window {
 
-    public static getWindow = (title: string, width: number, height: number, target: string): BrowserWindow => {
+    public static readonly PROPERTIES = {
+        width: 800,
+        height: 600,
+        target: "index.html"
+    };
+
+    public static getWindow = (properties: any): BrowserWindow => {
+
+        const windowProps = Object.assign({}, Window.PROPERTIES, properties);
 
         // create a new window
-        let window = new BrowserWindow({
-            title: title,
-            width: width,
-            height: height
-        });
+        let window = new BrowserWindow(windowProps);
 
         // load html into window
-        window.loadURL("file://" + __dirname + "/" + target);
+        window.loadURL("file://" + __dirname + "/../../" + windowProps.target);
 
         // garbage collection handle
         window.on("close", function () {

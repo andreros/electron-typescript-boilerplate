@@ -1,6 +1,6 @@
-# Typescript Boilerplate
+# Electron Typescript Boilerplate
 
-Boilerplate for a Typescript project with SASS for CSS and Handlebars for HTML templating.
+Boilerplate for building an Electron application written in Typescript, with SASS for CSS and Handlebars for HTML templating.
 
 
 ## Fixes #

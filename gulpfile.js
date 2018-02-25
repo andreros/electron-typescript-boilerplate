@@ -6,6 +6,7 @@
  */
 const gulp = require('gulp'),
     fs = require('fs'),
+    exec = require('child_process').exec,
     rimraf = require('rimraf'),
 
     // TypeScript Linter
@@ -18,12 +19,6 @@ const gulp = require('gulp'),
     // Javascript
     concat = require('gulp-concat'),
     rename = require('gulp-rename'),
-
-    // Browserify
-    browserify = require('browserify'),
-    uglify = require('gulp-uglify-es').default,
-    vinylSourceStream = require('vinyl-source-stream'),
-    vinylBuffer = require('vinyl-buffer'),
 
     // SASS
     sourcemaps = require('gulp-sourcemaps'),
@@ -65,36 +60,11 @@ gulp.task('ts:lint', function () {
  * Compile Typescript task.
  * This task is responsible for transpiling the application TypeScript into regular Javascript.
  */
-gulp.task('ts:compile', function () {
+gulp.task('ts:compile', ['ts:lint'], function () {
     var tsProject = ts.createProject('tsconfig.json');
     return gulp.src(SRC_FOLDER + '/**/*.ts')
         .pipe(tsProject())
         .js
-        .pipe(gulp.dest(DIST_FOLDER));
-});
-
-/**
- * Browserify task.
- * This task is responsible for bundling all transpiled javascript files into one file with all the javascript code to be executed.
- */
-gulp.task('browserify', ['ts:compile'], function () {
-    // Single entry point to browserify
-    var b = browserify({
-        entries: DIST_FOLDER + '/index.js',
-        //builtins: [{fs: fs}],
-        //commonDir: false, 
-        //detectGlobals: false,
-        //ignoreMissing: true,
-        //insertGlobalVars: 'global',
-        //browserField: false,
-        debug: false
-    });
-    return b.bundle()
-        .pipe(vinylSourceStream('bundle.js'))
-        .pipe(vinylBuffer())
-        .pipe(sourcemaps.init({ loadMaps: true }))
-        //.pipe(uglify())
-        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(DIST_FOLDER));
 });
 
@@ -152,21 +122,10 @@ gulp.task('build:html', ['build:json'], function () {
 });
 
 /**
- * Build Electron task.
- * This task is responsible for copying the Electron application related files to the 'dist' folder.
- */
-gulp.task('build:electron', function() {
-    return gulp.src(SRC_FOLDER + '/electron.js')
-        .pipe(gulp.dest(DIST_FOLDER));
-});
-
-/**
  * Build clean task.
  * This task is responsible for removing the unneeded files for the build from the 'dist' folder.
  */
 gulp.task('build:clean', function () {
-    rimraf(DIST_FOLDER + '/components', {}, function() {});
-    rimraf(DIST_FOLDER + '/index.js', {}, function() {});
     rimraf(DIST_FOLDER + '/index.json', {}, function() {});
 });
 
@@ -174,7 +133,7 @@ gulp.task('build:clean', function () {
  * Build main task.
  * This task is responsible for gathering all the subtasks involved in the building process and launch them in parallel.
  */
-gulp.task('build', ['ts:lint', 'browserify', 'copy:images', 'build:scss', 'build:html', 'build:electron'], function() {
+gulp.task('build', ['ts:compile', 'copy:images', 'build:scss', 'build:html'], function() {
     gulp.start('build:clean');
 });
 
@@ -195,12 +154,12 @@ gulp.task('serve', function () {
                 }
             });
             // listen for changes in the following file types
-            gulp.watch(SRC_FOLDER + '/**/*.ts', ['ts:lint', 'ts:compile']);
+            gulp.watch(SRC_FOLDER + '/**/*.ts', ['ts:compile']);
             gulp.watch(SRC_FOLDER + '/**/*.scss', ['build:scss']);
             gulp.watch(SRC_FOLDER + '/**/*.json', ['build:html']);
             gulp.watch(SRC_FOLDER + '/**/*.hbs', ['build:html']);
             gulp.watch(SRC_FOLDER + '/**/*.html', ['build:html']);
-            gulp.watch([DIST_FOLDER + '/*.js', DIST_FOLDER + '/*.html', DIST_FOLDER + '/*.css']).on('change', browserSync.reload);
+            gulp.watch([DIST_FOLDER + '/**/*.js', DIST_FOLDER + '/**/*.html', DIST_FOLDER + '/**/*.css']).on('change', browserSync.reload);
         } else {
             // detect specific errors
             switch (err.code) {
@@ -224,9 +183,13 @@ gulp.task('serve', function () {
  * in a distributable format. This task also starts the application server in development mode.
  */
 gulp.task('default', ['clean'], function () {
-    gulp.task('serve:after:build', ['ts:lint', 'browserify', 'copy:images', 'build:scss', 'build:html', 'build:electron'], function () {
+    gulp.task('serve:after:build', ['ts:compile', 'copy:images', 'build:scss', 'build:html'], function () {
         gulp.start('build:clean');
-        gulp.start('serve');
+        exec('electron .', function (err, stdout, stderr) {
+            console.log('stdout: ', stdout);
+            console.log('stderr: ', stderr);
+            console.log('err: ', err);
+        });
     });
     gulp.start('serve:after:build');
 });
