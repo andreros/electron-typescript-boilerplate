@@ -3,7 +3,7 @@
 Boilerplate for building an Electron application written in Typescript, with SASS for CSS and Handlebars for HTML templating.
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/andreros/typescript-boilerplate/master/src/assets/img/typescript-boilerplate.png" width="600">
+    <img src="https://raw.githubusercontent.com/andreros/electron-typescript-boilerplate/master/src/assets/img/electron-typescript-boilerplate.png" width="600">
 </p>
 
 

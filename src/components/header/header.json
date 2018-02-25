@@ -1,10 +1,10 @@
 {
     "header": {
-        "title": "TypeScript Boilerplate",
-        "subtitle": "Boilerplate for a Typescript project with SASS for CSS and Handlebars for HTML templating.",
+        "title": "Electron TypeScript Boilerplate",
+        "subtitle": "Boilerplate for building an Electron application written in Typescript, <br/>with SASS for CSS and Handlebars for HTML templating.",
         "logo": {
-            "alt": "TypeScript Logo",
-            "src": "./assets/img/ts_logo.png"
+            "alt": "Electron Logo",
+            "src": "./assets/img/electron_logo.png"
         }
     }
 }
