@@ -29,19 +29,15 @@ Please, read the [Node.js official installation guide](https://github.com/nodejs
 
 ### [Electron](https://electronjs.org/)
 
-## Electron Installation
+#### Electron Installation
 
 To install prebuilt Electron binaries, use [`npm`](https://docs.npmjs.com/).
 The preferred method is to install Electron as a development dependency in your
 app:
 
 ```sh
-npm install electron --save-dev --save-exact
+npm install electron -g
 ```
-
-The `--save-exact` flag is recommended as Electron does not follow semantic
-versioning. For info on how to manage Electron versions in your apps, see
-[Electron versioning](https://github.com/electron/electron/blob/master/docs/tutorial/electron-versioning.md).
 
 For more installation options and troubleshooting tips, see
 [installation](https://github.com/electron/electron/blob/master/docs/tutorial/installation.md).
