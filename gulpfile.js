@@ -73,6 +73,8 @@ gulp.task('ts:compile', ['ts:lint'], function () {
  * This task is responsible for copying the application images folder into the 'dist' folder.
  */
 gulp.task('copy:images', function () {
+    gulp.src(SRC_ASSETS_FOLDER + '/icons/**/*')
+        .pipe(gulp.dest(DIST_ASSETS_FOLDER + '/icons/'));
     return gulp.src(SRC_ASSETS_FOLDER + '/img/**/*')
         .pipe(gulp.dest(DIST_ASSETS_FOLDER + '/img/'));
 });
