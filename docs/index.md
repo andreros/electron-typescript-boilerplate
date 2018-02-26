@@ -1,6 +1,6 @@
 # Documentation
 
-Documentation for the Typescript Boilerplate project.
+Documentation for the Electron Typescript Boilerplate project (update in progress).
 
 
 ## Table of Contents

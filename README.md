@@ -67,7 +67,7 @@ browser should open a window with the project running from [http://localhost:300
 
 ## Run Your Application
 
-To rou your application, from the project directory run the command `gulp` or `gulp default`. The application 
+To run your application, from the project directory run the command `gulp` or `gulp default`. The application 
 will build and executed by Electron. If all went well, a window with your application will open.
 
 ## Pack Your Application for Distribution
@@ -84,7 +84,7 @@ system you are on:
 *  SASS CSS Pre-processor: [https://sass-lang.com/](https://sass-lang.com/)
 *  Handlebars Templating Engine: [http://handlebarsjs.com/](http://handlebarsjs.com/)
 *  TypeScript Scripting Language: [https://www.typescriptlang.org/](https://www.typescriptlang.org/)
-*  Electron cross platform desktop apps with JavaScript, HTML, and CSS: [Electron](https://electronjs.org/)
+*  Electron cross platform desktop apps with JavaScript, HTML, and CSS: [https://electronjs.org/](https://electronjs.org/)
 *  Gulp Task Automator: [https://gulpjs.com/](https://gulpjs.com/)
 *  Browser Sync Server Synchronizing Tool: [https://browsersync.io/](https://browsersync.io/)
 
