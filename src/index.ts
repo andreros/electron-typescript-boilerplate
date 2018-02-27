@@ -1,3 +1,3 @@
-import { ElectronApp } from './components';
+import { ElectronApp } from './electron';
 
 const electronApp = new ElectronApp();
