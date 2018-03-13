@@ -111,4 +111,4 @@ system you are on:
 ## License
 
 This is free and unencumbered software released into the [public domain](UNLICENSE.txt). For more information,
-please refer to [http://unlicense.org](http://unlicense.org).
+please refer to [http://unlicense.org](http://unlicense.org). [![CC0](http://mirrors.creativecommons.org/presskit/buttons/88x31/svg/cc-zero.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
